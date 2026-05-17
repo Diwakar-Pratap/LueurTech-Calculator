@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Capacitor Android build outputs
+android/.gradle/
+android/app/build/
+android/build/
+android/.idea/
+android/local.properties
+
+# Signing keys (NEVER commit these!)
+*.jks
+*.keystore
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# npm
+package-lock.json

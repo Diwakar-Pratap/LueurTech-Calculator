@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="LueurTech">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>Calculator - LueurTech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Ambient Background Effects -->
+    <div class="ambient-bg">
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+        <div class="ambient-orb orb-3"></div>
+    </div>
+
+    <!-- Main Calculator Container -->
+    <div class="calculator-app" id="calculatorApp">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <div class="toggle-track">
+                    <div class="toggle-thumb">
+                        <span class="icon-sun">☀️</span>
+                        <span class="icon-moon">🌙</span>
+                    </div>
+                </div>
+            </button>
+
+            <div class="top-actions">
+                <button class="action-btn" id="soundToggle" aria-label="Toggle sound" title="Toggle sound">
+                    <svg class="sound-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                    <svg class="sound-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <line x1="23" y1="9" x2="17" y2="15"></line>
+                        <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                </button>
+                <button class="action-btn" id="historyToggle" aria-label="History" title="History">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                </button>
+                <div class="logo">
+                    <span class="logo-icon">◈</span>
+                    <span class="logo-text">LueurTech</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Display Section -->
+        <section class="display-section" id="displaySection">
+            <div class="display-glass">
+                <div class="expression-line" id="expressionLine"></div>
+                <div class="result-container">
+                    <div class="result-display" id="resultDisplay">
+                        <span class="result-value" id="resultValue">0</span>
+                    </div>
+                    <button class="copy-btn" id="copyBtn" aria-label="Copy result" title="Copy result">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <span class="copy-tooltip">Copied!</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Keypad Section -->
+        <section class="keypad-section">
+            <div class="keypad-grid">
+                <!-- Row 1 -->
+                <button class="calc-btn func-btn" data-action="clear" id="btnClear">
+                    <span class="btn-text">AC</span>
+                    <span class="btn-ripple"></span>
+                </button>
+                <button class="calc-btn func-btn" data-action="backspace" id="btnBackspace">
+                    <span class="btn-text">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
+                            <line x1="18" y1="9" x2="12" y2="15"></line>
+                            <line x1="12" y1="9" x2="18" y2="15"></line>
+                        </svg>
+                    </span>
+                    <span class="btn-ripple"></span>
+                </button>
+                <button class="calc-btn func-btn" data-action="percent" id="btnPercent">
+                    <span class="btn-text">%</span>
+                    <span class="btn-ripple"></span>
+                </button>
+                <button class="calc-btn op-btn" data-action="operator" data-value="÷" id="btnDivide">
+                    <span class="btn-text">÷</span>
+                    <span class="btn-ripple"></span>
+                </button>
+
+                <!-- Row 2 -->
+                <button class="calc-btn num-btn" data-action="number" data-value="7" id="btn7">
+                    <span class="btn-text">7</span>
+                    <span class="btn-ripple"></span>
+                </button>
+                <button class="calc-btn num-btn" data-action="number" data-value="8" id="btn8">
+                    <span class="btn-text">8</span>
+                    <span class="btn-ripple"></span>
+                </button>
+                <button class="calc-btn num-btn" data-action="number" data-value="9" id="btn9">
+                    <span class="btn-text">9</span>
+                    <span class="btn-ripple"></span>
+                </button>
+                <button class="calc-btn op-btn" data-action="operator" data-value="×" id="btnMultiply">
+                    <span class="btn-text">×</span>
+                    <span class="btn-ripple"></span>
+                </button>
+
+                <!-- Row 3 -->
+                <button class="calc-btn num-btn" data-action="number" data-value="4" id="btn4">
+                    <span class="btn-text">4</span>
+                    <span class="btn-ripple"></span>
+                </button>
+                <button class="calc-btn num-btn" data-action="number" data-value="5" id="btn5">
+                    <span class="btn-text">5</span>
+                    <span class="btn-ripple"></span>
+                </button>
+                <button class="calc-btn num-btn" data-action="number" data-value="6" id="btn6">
+                    <span class="btn-text">6</span>
+                    <span class="btn-ripple"></span>
+                </button>
+                <button class="calc-btn op-btn" data-action="operator" data-value="-" id="btnSubtract">
+                    <span class="btn-text">−</span>
+                    <span class="btn-ripple"></span>
+                </button>
+
+                <!-- Row 4 -->
+                <button class="calc-btn num-btn" data-action="number" data-value="1" id="btn1">
+                    <span class="btn-text">1</span>
+                    <span class="btn-ripple"></span>
+                </button>
+                <button class="calc-btn num-btn" data-action="number" data-value="2" id="btn2">
+                    <span class="btn-text">2</span>
+                    <span class="btn-ripple"></span>
+                </button>
+                <button class="calc-btn num-btn" data-action="number" data-value="3" id="btn3">
+                    <span class="btn-text">3</span>
+                    <span class="btn-ripple"></span>
+                </button>
+                <button class="calc-btn op-btn" data-action="operator" data-value="+" id="btnAdd">
+                    <span class="btn-text">+</span>
+                    <span class="btn-ripple"></span>
+                </button>
+
+                <!-- Row 5 -->
+                <button class="calc-btn num-btn btn-zero" data-action="number" data-value="0" id="btn0">
+                    <span class="btn-text">0</span>
+                    <span class="btn-ripple"></span>
+                </button>
+                <button class="calc-btn num-btn" data-action="decimal" id="btnDecimal">
+                    <span class="btn-text">.</span>
+                    <span class="btn-ripple"></span>
+                </button>
+                <button class="calc-btn equals-btn" data-action="equals" id="btnEquals">
+                    <span class="btn-text">=</span>
+                    <span class="btn-ripple"></span>
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- History Panel -->
+    <div class="history-overlay" id="historyOverlay"></div>
+    <aside class="history-panel" id="historyPanel">
+        <div class="history-header">
+            <h2>History</h2>
+            <div class="history-actions">
+                <button class="history-clear-btn" id="historyClearBtn" title="Clear history">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                </button>
+                <button class="history-close-btn" id="historyCloseBtn" title="Close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="history-list" id="historyList">
+            <div class="history-empty">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <p>No calculations yet</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-text">Copied to clipboard</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
