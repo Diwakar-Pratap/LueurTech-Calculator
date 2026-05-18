@@ -24,6 +24,11 @@ android {
     }
 }
 
+// Fix for "task 'unitTestClasses' not found" error
+tasks.register("unitTestClasses") {
+    dependsOn "compileDebugUnitTestSources"
+}
+
 repositories {
     flatDir{
         dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
