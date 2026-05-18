@@ -403,7 +403,14 @@
     }
 
     // ---- Init ----
-    function init() {
+    async function init() {
+        // Try to hide the status bar on Android/iOS for an immersive full-screen experience
+        if (window.Capacitor && window.Capacitor.Plugins.StatusBar) {
+            try {
+                await window.Capacitor.Plugins.StatusBar.hide();
+            } catch (e) {}
+        }
+
         // Apply saved theme
         applyTheme(state.theme);
 
