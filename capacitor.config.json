@@ -1,5 +1,11 @@
 {
   "appId": "com.lueurtech.calculator",
   "appName": "Calculator - LueurTech",
-  "webDir": "www"
+  "webDir": "www",
+  "plugins": {
+    "StatusBar": {
+      "overlaysWebView": true,
+      "backgroundColor": "#00000000"
+    }
+  }
 }
